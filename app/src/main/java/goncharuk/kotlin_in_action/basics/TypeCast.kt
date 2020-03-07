@@ -10,6 +10,9 @@ class TypeCast : AbstractTestClass("TypeCast") {
 
         receiveStringButAny(createAnyButString())
         receiveStringButAny(createAnyButInteger())
+
+        receiveWhateverBuyAny(createAnyButString())
+        receiveWhateverBuyAny(createAnyButInteger())
     }
 
     private fun receiveIntButAny(input: Any) {
@@ -23,6 +26,13 @@ class TypeCast : AbstractTestClass("TypeCast") {
         (input as? String)?.apply {
             val string = this + "omegalul"
             logging("string : $string")
+        }
+    }
+
+    private fun receiveWhateverBuyAny(input: Any) {
+        when (input) {
+            is String -> logging("input is String : $input")
+            is Int -> logging("input is Int : $input")
         }
     }
 
